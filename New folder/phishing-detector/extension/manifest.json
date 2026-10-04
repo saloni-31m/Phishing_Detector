@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Phishing URL Detector",
+  "version": "1.0.0",
+  "description": "Flags likely phishing pages in real time using an ML model.",
+  "permissions": ["tabs", "activeTab", "storage", "scripting", "webNavigation"],
+  "host_permissions": ["http://localhost:8000/*", "<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Phishing Detector"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
